@@ -12,8 +12,8 @@ describe("User visits the create video page", () => {
             browser.setValue("#video-description-input", description);
             browser.click("#submit-button");
 
-            assert.include(browser.getText("#videos-container"), title);
-            assert.include(browser.getText("#videos-container"), description);
+            assert.include(browser.getText("#videos-container h3"), title);
+            assert.include(browser.getText("#videos-container p"), description);
         });
     });
 });
