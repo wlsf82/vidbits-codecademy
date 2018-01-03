@@ -7,7 +7,12 @@ router.post("/videos", async (req, res, next) => {
 
     await Video.create({ title, description });
 
-    res.status(201).send();
+    res.status(201).send(`
+        <div id="videos-container">
+            <h3>${title}</h3>
+            <p>${description}</p>
+        </div>
+    `);
 });
 
 module.exports = router;
