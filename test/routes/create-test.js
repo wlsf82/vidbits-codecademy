@@ -13,7 +13,7 @@ describe("Server path: /videos", () => {
         afterEach(disconnectDatabase);
 
         it("returns created success status response code", async () => {
-            const newVideo = {
+            const videoToCreate = {
                 title: "Sample title",
                 description: "Sample description"
             };
@@ -21,13 +21,13 @@ describe("Server path: /videos", () => {
             const response = await request(app)
                 .post("/videos")
                 .type("form")
-                .send(newVideo);
+                .send(videoToCreate);
 
             assert.equal(response.status, 201);
         });
 
         it("stores new video in the database", async () => {
-            const newVideoDb = {
+            const videoToCreateDb = {
                 title: "Sample title db",
                 description: "Sample description db"
             };
