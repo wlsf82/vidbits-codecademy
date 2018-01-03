@@ -35,12 +35,12 @@ describe("Server path: /videos", () => {
             const response = await request(app)
                 .post("/videos")
                 .type("form")
-                .send(newVideoDb);
+                .send(videoToCreateDb);
 
-            const createdVideo = await Video.findOne(newVideoDb);
+            const createdVideo = await Video.findOne(videoToCreateDb);
 
-            assert.equal(createdVideo.title, newVideoDb.title);
-            assert.equal(createdVideo.description, newVideoDb.description);
+            assert.equal(createdVideo.title, videoToCreateDb.title);
+            assert.equal(createdVideo.description, videoToCreateDb.description);
         });
     });
 });
