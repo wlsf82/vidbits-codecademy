@@ -10,7 +10,6 @@ router.get("/", async (req, res, next) => {
 
 router.post("/videos", async (req, res, next) => {
     const { title, description } = req.body;
-
     const video = await Video.create({ title, description });
 
     res.status(201).render("videos/show", { video });
