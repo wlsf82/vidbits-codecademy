@@ -29,7 +29,13 @@ router.post("/videos", async (req, res, next) => {
     newVideo.validateSync();
 
     if (newVideo.errors) {
-        res.status(400).render("videos/create", { error: "Title is required" });
+        res.status(400).render(
+            "videos/create",
+            {
+                error: "Title is required",
+                newVideo,
+            }
+        );
     } else {
         const videoToCreate = await Video.create({ title, description });
 
