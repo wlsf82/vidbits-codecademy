@@ -3,6 +3,10 @@
     <form action="/videos" method="post">
         <label for="title">Title</label>
         <input id="video-title-input" name="title" maxlength="50"/>
+        {{#with newVideo.errors.title as | error |}}
+            <span class="error">{{ error.message}}</span>
+            <br>
+        {{/with}}
 
         <label for="description">Description</label>
         <textarea id="video-description-input" name="description"></textarea>
