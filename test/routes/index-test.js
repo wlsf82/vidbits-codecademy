@@ -2,10 +2,8 @@ const { assert } = require("chai");
 const request = require("supertest");
 
 const app = require("../../app");
-const Video = require("../../models/video");
 
 const { connectDatabase, disconnectDatabase } = require("../database-utilities");
-const { parseTextFromHTML } = require("../test-utils");
 
 describe("Server path: /", () => {
     describe("GET", () => {
@@ -22,10 +20,11 @@ describe("Server path: /", () => {
 
         afterEach(disconnectDatabase);
 
-        it("render existing videos", async () => {
+        it("redirects to '/videos'", async () => {
             const response = await request(app).get(`/`);
 
-            assert.include(parseTextFromHTML(response.text, "#videos-container .video-title"), videoToCreate.title);
+            assert.equal(response.status, 302);
+            assert.equal(response.headers.location, "/videos");
         });
     });
 });
