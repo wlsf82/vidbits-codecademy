@@ -42,5 +42,18 @@ describe("Server path: /videos", () => {
             assert.equal(createdVideo.title, videoToCreateDb.title);
             assert.equal(createdVideo.description, videoToCreateDb.description);
         });
+
+        it("does not save video when title is missing", async () => {
+            const videoToCreateWithMissingTitle = { description: "Sample description db" };
+
+            const response = await request(app)
+                .post("/videos")
+                .type("form")
+                .send(videoToCreateWithMissingTitle);
+
+            const notCreatedVideo = await Video.findOne(videoToCreateWithMissingTitle);
+
+            assert.isNotOk(notCreatedVideo, "Video was created even without providing title")
+        });
     });
 });
