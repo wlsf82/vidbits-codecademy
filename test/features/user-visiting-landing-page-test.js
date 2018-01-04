@@ -13,7 +13,7 @@ describe("User visits the landing page", () => {
         it("renders a page to save a video", () => {
             browser.url("/");
 
-            browser.click("a[href='create.html']");
+            browser.click("a[href='/videos/create']");
 
             assert.equal(browser.getText("#create-video-container h2"), "Save a video");
         })

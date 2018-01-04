@@ -6,7 +6,7 @@ describe("User visits the create video page", () => {
             const title = "Sample video title";
             const description = "Sample video description";
 
-            browser.url("create.html");
+            browser.url("/videos/create");
 
             browser.setValue("#video-title-input", title);
             browser.setValue("#video-description-input", description);
