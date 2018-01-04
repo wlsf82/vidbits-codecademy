@@ -5,6 +5,7 @@ const app = require("../../app");
 const Video = require("../../models/video");
 
 const { connectDatabase, disconnectDatabase } = require("../database-utilities");
+const { parseTextFromHTML } = require("../test-utils");
 
 describe("Server path: /videos", () => {
     describe("POST", () => {
@@ -65,6 +66,18 @@ describe("Server path: /videos", () => {
                 .send(videoToCreateWithMissingTitle);
 
             assert.equal(response.status, 400);
+        });
+
+        it("renders the create video form when title is missing", async () => {
+            const videoToCreateWithMissingTitle = { description: "Sample description db" };
+
+            const response = await request(app)
+                .post("/videos")
+                .type("form")
+                .send(videoToCreateWithMissingTitle);
+
+            assert.isOk(parseTextFromHTML(response.text, "#create-video-container form"), "Create form was not rendered");
+            assert.equal(parseTextFromHTML(response.text, "#create-video-container h2"), "Save a video");
         });
     });
 });
