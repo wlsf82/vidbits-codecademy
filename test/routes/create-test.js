@@ -55,5 +55,16 @@ describe("Server path: /videos", () => {
 
             assert.equal(videos.length, 0);
         });
+
+        it("returns '400' status code when title is missing", async () => {
+            const videoToCreateWithMissingTitle = { description: "Sample description db" };
+
+            const response = await request(app)
+                .post("/videos")
+                .type("form")
+                .send(videoToCreateWithMissingTitle);
+
+            assert.equal(response.status, 400);
+        });
     });
 });
