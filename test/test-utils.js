@@ -12,4 +12,21 @@ const parseTextFromHTML = (htmlAsString, selector) => {
     }
 };
 
-module.exports = { parseTextFromHTML };
+const buildItemObject = (options = {}) => {
+    const title = options.title || "My favorite video";
+    const description = options.description || "The best video ever!";
+
+    return { title, description };
+};
+
+const seedVideoToDatabase = async (options = {}) => {
+    const video = await Video.create(buildItemObject(options));
+
+    return video;
+};
+
+module.exports = {
+    parseTextFromHTML,
+    buildItemObject,
+    seedVideoToDatabase
+};
