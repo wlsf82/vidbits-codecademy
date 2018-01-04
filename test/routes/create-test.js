@@ -44,40 +44,31 @@ describe("Server path: /videos", () => {
             assert.equal(createdVideo.description, videoToCreateDb.description);
         });
 
-        it("does not save video when title is missing", async () => {
+        describe("With missing title", () => {
             const videoToCreateWithMissingTitle = { description: "Sample description db" };
+            let response;
 
-            const response = await request(app)
-                .post("/videos")
-                .type("form")
-                .send(videoToCreateWithMissingTitle);
+            beforeEach(async () => {
+                response = await request(app)
+                    .post("/videos")
+                    .type("form")
+                    .send(videoToCreateWithMissingTitle);
+            });
 
-            const videos = await Video.find({});
+            it("does not save video when title is missing", async () => {
+                const videos = await Video.find({});
 
-            assert.equal(videos.length, 0);
-        });
+                assert.equal(videos.length, 0);
+            });
 
-        it("returns '400' status code when title is missing", async () => {
-            const videoToCreateWithMissingTitle = { description: "Sample description db" };
+            it("returns '400' status code when title is missing", async () => {
+                assert.equal(response.status, 400);
+            });
 
-            const response = await request(app)
-                .post("/videos")
-                .type("form")
-                .send(videoToCreateWithMissingTitle);
-
-            assert.equal(response.status, 400);
-        });
-
-        it("renders the create video form when title is missing", async () => {
-            const videoToCreateWithMissingTitle = { description: "Sample description db" };
-
-            const response = await request(app)
-                .post("/videos")
-                .type("form")
-                .send(videoToCreateWithMissingTitle);
-
-            assert.isOk(parseTextFromHTML(response.text, "#create-video-container form"), "Create form was not rendered");
-            assert.equal(parseTextFromHTML(response.text, "#create-video-container h2"), "Save a video");
+            it("renders the create video form when title is missing", async () => {
+                assert.isOk(parseTextFromHTML(response.text, "#create-video-container form"), "Create form was not rendered");
+                assert.equal(parseTextFromHTML(response.text, "#create-video-container h2"), "Save a video");
+            });
         });
     });
 });
