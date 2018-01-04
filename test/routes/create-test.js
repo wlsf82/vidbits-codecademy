@@ -51,9 +51,9 @@ describe("Server path: /videos", () => {
                 .type("form")
                 .send(videoToCreateWithMissingTitle);
 
-            const notCreatedVideo = await Video.findOne(videoToCreateWithMissingTitle);
+            const videos = await Video.find({});
 
-            assert.isNotOk(notCreatedVideo, "Video was created even without providing title")
+            assert.equal(videos.length, 0);
         });
     });
 });
