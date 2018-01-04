@@ -8,6 +8,12 @@ router.get("/", async (req, res, next) => {
     res.render("index", { videos });
 });
 
+router.get("/videos/create", async (req, res, next) => {
+    const videos = await Video.find({});
+
+    res.render("videos/create", { videos });
+});
+
 router.post("/videos", async (req, res, next) => {
     const { title, description } = req.body;
     const video = await Video.create({ title, description });
