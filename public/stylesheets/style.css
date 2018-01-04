@@ -113,3 +113,9 @@ form textarea {
 .video-description {
   padding: 30px 10px;
 }
+
+.error {
+    background-color: #ffcc00;
+    margin-top: 10px;
+    padding: 10px;
+}
