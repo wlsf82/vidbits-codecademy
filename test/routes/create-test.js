@@ -69,6 +69,10 @@ describe("Server path: /videos", () => {
                 assert.isOk(parseTextFromHTML(response.text, "#create-video-container form"), "Create form was not rendered");
                 assert.equal(parseTextFromHTML(response.text, "#create-video-container h2"), "Save a video");
             });
+
+            it("renders an error on the video form when title is missing", async () => {
+                assert.equal(parseTextFromHTML(response.text, "#create-video-container span"), "Path `title` is required.");
+            });
         });
     });
 });
