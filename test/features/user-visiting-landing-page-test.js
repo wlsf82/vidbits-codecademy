@@ -18,4 +18,21 @@ describe("User visits the landing page", () => {
             assert.equal(browser.getText("#create-video-container h2"), "Save a video");
         })
     });
+
+    describe("With an existing video", () => {
+        const title = "Existing video title";
+
+        beforeEach(() => {
+            browser.url("/videos/create");
+
+            browser.setValue("#video-title-input", title);
+            browser.click("#submit-button");
+        });
+
+        it("renders the video in the list", () => {
+            browser.url("/");
+
+            assert.include(browser.getText("#videos-container .video-title"), title);
+        });
+    });
 });
