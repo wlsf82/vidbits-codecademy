@@ -71,7 +71,7 @@ describe("Server path: /videos", () => {
             });
 
             it("renders an error on the video form when title is missing", async () => {
-                assert.equal(parseTextFromHTML(response.text, "#create-video-container span"), "Path `title` is required.");
+                assert.equal(parseTextFromHTML(response.text, "#create-video-container span"), "Title is required");
             });
         });
     });
