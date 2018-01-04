@@ -17,11 +17,5 @@ describe("User visits the create video page", () => {
             assert.include(browser.getText("#videos-container h3"), title);
             assert.include(browser.getText("#videos-container p"), description);
         });
-
-        it("renders the created video on the landing page", () => {
-            browser.url("/");
-
-            assert.include(browser.getText("#videos-container .video-title"), title);
-        });
     });
 });
