@@ -37,7 +37,7 @@ router.post("/videos", async (req, res, next) => {
             }
         );
     } else {
-        const videoToCreate = await Video.create({ title, description });
+        const videoToCreate = await newVideo.save();
 
         res.status(201).render("videos/show", { videoToCreate });
     }
