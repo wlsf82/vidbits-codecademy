@@ -55,22 +55,22 @@ describe("Server path: /videos", () => {
                     .send(videoToCreateWithMissingTitle);
             });
 
-            it("does not save video when title is missing", async () => {
+            it("does not save video", async () => {
                 const videos = await Video.find({});
 
                 assert.equal(videos.length, 0);
             });
 
-            it("returns '400' status code when title is missing", async () => {
+            it("returns '400' status code", async () => {
                 assert.equal(response.status, 400);
             });
 
-            it("renders the create video form when title is missing", async () => {
+            it("renders the create video form", async () => {
                 assert.isOk(parseTextFromHTML(response.text, "#create-video-container form"), "Create form was not rendered");
                 assert.equal(parseTextFromHTML(response.text, "#create-video-container h2"), "Save a video");
             });
 
-            it("renders an error on the video form when title is missing", async () => {
+            it("renders an error in the video form", async () => {
                 assert.equal(parseTextFromHTML(response.text, "#create-video-container span"), "Title is required");
             });
         });
