@@ -13,35 +13,37 @@ describe("Server path: /videos", () => {
 
         afterEach(disconnectDatabase);
 
-        it("returns created success status code", async () => {
-            const videoToCreate = {
-                title: "Sample title",
-                description: "Sample description"
-            };
+        describe("Video successfully created", () => {
+            let response;
+            let videoToCreate;
 
-            const response = await request(app)
-                .post("/videos")
-                .type("form")
-                .send(videoToCreate);
+            beforeEach(async () => {
+                videoToCreate = {
+                    title: "Sample title",
+                    description: "Sample description"
+                };
 
-            assert.equal(response.status, 201);
-        });
+                response = await request(app)
+                    .post("/videos")
+                    .type("form")
+                    .send(videoToCreate);
+            });
 
-        it("stores new video in the database", async () => {
-            const videoToCreateDb = {
-                title: "Sample title db",
-                description: "Sample description db"
-            };
+            it("returns created success status code", async () => {
+                assert.equal(response.status, 201);
+            });
 
-            const response = await request(app)
-                .post("/videos")
-                .type("form")
-                .send(videoToCreateDb);
+            it("renders video information", async () => {
+                assert.equal(parseTextFromHTML(response.text, "#videos-container h3"), videoToCreate.title);
+                assert.equal(parseTextFromHTML(response.text, "#videos-container p"), videoToCreate.description);
+            });
 
-            const createdVideo = await Video.findOne(videoToCreateDb);
+            it("stores new video in the database", async () => {
+                const createdVideo = await Video.findOne(videoToCreate);
 
-            assert.equal(createdVideo.title, videoToCreateDb.title);
-            assert.equal(createdVideo.description, videoToCreateDb.description);
+                assert.equal(createdVideo.title, videoToCreate.title);
+                assert.equal(createdVideo.description, videoToCreate.description);
+            });
         });
 
         describe("With missing title", () => {
