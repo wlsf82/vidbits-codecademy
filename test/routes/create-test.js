@@ -12,7 +12,7 @@ describe("Server path: /videos", () => {
 
         afterEach(disconnectDatabase);
 
-        it("returns created success status response code", async () => {
+        it("returns created success status code", async () => {
             const videoToCreate = {
                 title: "Sample title",
                 description: "Sample description"
