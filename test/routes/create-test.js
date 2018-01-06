@@ -78,7 +78,7 @@ describe("Server path: /videos", () => {
             });
 
             it("renders an error in the video form", async () => {
-                assert.equal(parseTextFromHTML(response.text, "#create-video-container span"), "Title is required");
+                assert.equal(parseTextFromHTML(response.text, "#create-video-container span"), "Path `title` is required.");
             });
 
             it("preservers description in the video form", async () => {
