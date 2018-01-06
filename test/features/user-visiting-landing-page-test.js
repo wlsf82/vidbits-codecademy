@@ -39,5 +39,11 @@ describe("User visits the landing page", () => {
             assert.equal(browser.getAttribute("iframe", "src"), url);
             assert.include(browser.getText("#videos-container .video-title"), title);
         });
+
+        it("can navigate to a video", () => {
+            browser.click(".video-title a");
+
+            assert.include(browser.getText("#video-container h3"), title);
+        });
     });
 });
