@@ -18,6 +18,16 @@ describe("Model: Video", () => {
 
             assert.strictEqual(video.title, titleAsInt.toString());
         });
+
+        it("is required", () => {
+            const video = new Video({title: ""})
+
+            video.validateSync();
+
+            const message = video.errors.title.message
+
+            assert.equal(message, "Path `title` is required.");
+        });
     });
 
     describe("description", () => {
@@ -37,6 +47,16 @@ describe("Model: Video", () => {
             const video = new Video({ url: urlAsInt });
 
             assert.strictEqual(video.url, urlAsInt.toString());
+        });
+
+        it("is required", () => {
+            const video = new Video({url: ""})
+
+            video.validateSync();
+
+            const message = video.errors.url.message
+
+            assert.equal(message, "Path `url` is required.");
         });
     });
 });
