@@ -35,8 +35,8 @@ describe("Server path: /videos", () => {
             });
 
             it("renders video information", async () => {
-                assert.equal(parseTextFromHTML(response.text, "#video-container h3"), videoToCreate.title);
-                assert.equal(parseTextFromHTML(response.text, "#video-container p"), videoToCreate.description);
+                assert.equal(parseTextFromHTML(response.text, ".video-card .video-title h1"), videoToCreate.title);
+                assert.equal(parseTextFromHTML(response.text, ".video-card .video-description p"), videoToCreate.description);
             });
 
             it("stores new video in the database", async () => {

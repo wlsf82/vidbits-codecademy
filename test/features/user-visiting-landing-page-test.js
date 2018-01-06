@@ -43,7 +43,7 @@ describe("User visits the landing page", () => {
         it("can navigate to a video", () => {
             browser.click(".video-title a");
 
-            assert.include(browser.getText("#video-container h3"), title);
+            assert.include(browser.getText(".video-card .video-title h1"), title);
         });
     });
 });

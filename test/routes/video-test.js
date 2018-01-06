@@ -17,9 +17,9 @@ describe("Server path: /videos/:id", () => {
 
             const response = await request(app).get(`/videos/${video._id}`);
 
-            assert.equal(parseTextFromHTML(response.text, "#video-container h3"), video.title);
+            assert.equal(parseTextFromHTML(response.text, ".video-card .video-title h1"), video.title);
             assert.equal(parseTextFromHTML(response.text, "iframe"), "");
-            assert.equal(parseTextFromHTML(response.text, "#video-container p"), video.description);
+            assert.equal(parseTextFromHTML(response.text, ".video-card .video-description p"), video.description);
         });
     });
 });
