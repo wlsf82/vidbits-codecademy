@@ -31,11 +31,11 @@ describe("User visits the landing page", () => {
             browser.setValue("#video-title-input", title);
             browser.setValue("#video-url-input", url);
             browser.click("#submit-button");
+
+            browser.url("/");
         });
 
         it("renders the video in the list", () => {
-            browser.url("/");
-
             assert.equal(browser.getAttribute("iframe", "src"), url);
             assert.include(browser.getText("#videos-container .video-title"), title);
         });
