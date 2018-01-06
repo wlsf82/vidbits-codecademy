@@ -15,8 +15,9 @@ const parseTextFromHTML = (htmlAsString, selector) => {
 const buildItemObject = (options = {}) => {
     const title = options.title || "My favorite video";
     const description = options.description || "The best video ever!";
+    const url = options.url || "http://example.com";
 
-    return { title, description };
+    return { title, description, url };
 };
 
 const seedVideoToDatabase = async (options = {}) => {
