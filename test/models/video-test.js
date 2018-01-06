@@ -29,4 +29,14 @@ describe("Model: Video", () => {
             assert.strictEqual(video.description, descriptionAsInt.toString());
         });
     });
+
+    describe("url", () => {
+        it("is a String", () => {
+            const urlAsInt = 1;
+
+            const video = new Video({ url: urlAsInt });
+
+            assert.strictEqual(video.url, urlAsInt.toString());
+        });
+    });
 });
