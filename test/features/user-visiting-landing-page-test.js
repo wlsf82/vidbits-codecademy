@@ -21,7 +21,7 @@ describe("User visits the landing page", () => {
 
     describe("With an existing video", () => {
         const title = "Existing video title";
-        const url = "http://example.com";
+        const url = "http://example.com/";
 
         beforeEach(() => {
             browser.url("/videos/create");
@@ -34,6 +34,7 @@ describe("User visits the landing page", () => {
         it("renders the video in the list", () => {
             browser.url("/");
 
+            assert.equal(browser.getAttribute("iframe", "src"), url);
             assert.include(browser.getText("#videos-container .video-title"), title);
         });
     });
