@@ -20,7 +20,8 @@ describe("Server path: /videos", () => {
             beforeEach(async () => {
                 videoToCreate = {
                     title: "Sample title",
-                    description: "Sample description"
+                    description: "Sample description",
+                    url: "http://example.com",
                 };
 
                 response = await request(app)
@@ -43,11 +44,15 @@ describe("Server path: /videos", () => {
 
                 assert.equal(createdVideo.title, videoToCreate.title);
                 assert.equal(createdVideo.description, videoToCreate.description);
+                assert.equal(createdVideo.url, videoToCreate.url);
             });
         });
 
         describe("With missing title", () => {
-            const videoToCreateWithMissingTitle = { description: "Sample description db" };
+            const videoToCreateWithMissingTitle = {
+                description: "Sample description db",
+                url: "http://example.com",
+            };
             let response;
 
             beforeEach(async () => {
