@@ -17,8 +17,8 @@ describe("Server path: /videos/:id", () => {
 
             const response = await request(app).get(`/videos/${video._id}`);
 
-            assert.include(parseTextFromHTML(response.text, "#videos-container h3"), video.title);
-            assert.include(parseTextFromHTML(response.text, "#videos-container p"), video.description);
+            assert.include(parseTextFromHTML(response.text, "#video-container h3"), video.title);
+            assert.include(parseTextFromHTML(response.text, "#video-container p"), video.description);
         });
     });
 });
