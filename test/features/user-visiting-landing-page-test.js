@@ -21,11 +21,13 @@ describe("User visits the landing page", () => {
 
     describe("With an existing video", () => {
         const title = "Existing video title";
+        const url = "http://example.com";
 
         beforeEach(() => {
             browser.url("/videos/create");
 
             browser.setValue("#video-title-input", title);
+            browser.setValue("#video-url-input", url);
             browser.click("#submit-button");
         });
 
