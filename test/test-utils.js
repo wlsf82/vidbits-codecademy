@@ -26,8 +26,11 @@ const seedVideoToDatabase = async (options = {}) => {
     return video;
 };
 
+const generateRandomUrl = (domain) => `http://${domain}/${Math.random()}`;
+
 module.exports = {
     parseTextFromHTML,
     buildItemObject,
-    seedVideoToDatabase
+    seedVideoToDatabase,
+    generateRandomUrl
 };
