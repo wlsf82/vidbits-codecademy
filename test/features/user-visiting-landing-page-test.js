@@ -1,5 +1,7 @@
 const { assert } = require("chai");
 
+const { generateRandomUrl } = require("../test-utils");
+
 describe("User visits the landing page", () => {
     describe("With no existing videos", () => {
         it("video container element is empty", () => {
@@ -21,7 +23,7 @@ describe("User visits the landing page", () => {
 
     describe("With an existing video", () => {
         const title = "Existing video title";
-        const url = "http://example.com/";
+        const url = generateRandomUrl("example.com");
 
         beforeEach(() => {
             browser.url("/videos/create");

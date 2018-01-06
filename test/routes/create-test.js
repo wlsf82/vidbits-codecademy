@@ -5,7 +5,7 @@ const app = require("../../app");
 const Video = require("../../models/video");
 
 const { connectDatabase, disconnectDatabase } = require("../database-utilities");
-const { parseTextFromHTML } = require("../test-utils");
+const { parseTextFromHTML, generateRandomUrl } = require("../test-utils");
 
 describe("Server path: /videos", () => {
     describe("POST", () => {
@@ -21,7 +21,7 @@ describe("Server path: /videos", () => {
                 videoToCreate = {
                     title: "Sample title",
                     description: "Sample description",
-                    url: "http://example.com",
+                    url: generateRandomUrl("example.com"),
                 };
 
                 response = await request(app)
@@ -51,7 +51,7 @@ describe("Server path: /videos", () => {
         describe("With missing title", () => {
             const videoToCreateWithMissingTitle = {
                 description: "Sample description db",
-                url: "http://example.com",
+                url: generateRandomUrl("example.com"),
             };
             let response;
 
