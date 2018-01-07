@@ -1,7 +1,5 @@
 const { assert } = require("chai");
 
-const { generateRandomUrl } = require("../test-utils");
-
 describe("User visits the edit video page", () => {
     const title = "Foo";
     const description = "Foobaca";
