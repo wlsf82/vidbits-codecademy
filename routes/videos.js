@@ -19,7 +19,7 @@ router.get("/videos/create", async (req, res, next) => {
 });
 
 router.get("/videos/:id", async (req, res, next) => {
-    const video = await Video.findById({_id: req.params.id});
+    const video = await Video.findById({ _id: req.params.id });
 
     res.render("videos/show", { video });
 });
