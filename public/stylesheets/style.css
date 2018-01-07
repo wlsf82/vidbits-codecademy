@@ -5,7 +5,7 @@ body {
     text-align: center;
 }
 
-.add-video-button, .edit-video-button {
+.add-video-button, .edit-video-button, #delete {
     text-align: center;
     background-color: #ff9b34;
     border: none;
@@ -16,7 +16,14 @@ body {
     margin: 0 auto;
     font-size: 16px;
     width: 100px;
+}
+
+.add-video-button, .edit-video-button {
     display: block;
+}
+
+#delete {
+    background-color: red;
 }
 
 .title-container {
@@ -45,6 +52,15 @@ body {
 
 .video-title {
     padding: 9px;
+}
+
+.video-buttons {
+    padding-bottom: 10px;
+}
+
+.video-buttons a {
+    display: inline;
+    margin: 10px;
 }
 
 /* Add page - form partial*/
