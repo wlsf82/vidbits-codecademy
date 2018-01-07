@@ -81,4 +81,11 @@ router.post("/videos/:id/edit", async (req, res, next) => {
     }
 });
 
+router.post("/videos/:id/delete", async (req, res, next) => {
+    Video.remove({ _id: req.params.id }, (error) => {
+        if (error) return res.send(error);
+        res.redirect("/");
+    });
+});
+
 module.exports = router;
