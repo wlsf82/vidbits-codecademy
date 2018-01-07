@@ -24,6 +24,12 @@ router.get("/videos/:id", async (req, res, next) => {
     res.render("videos/show", { video });
 });
 
+router.get("/videos/:id/edit", async (req, res, next) => {
+    const video = await Video.findById({ _id: req.params.id });
+
+    res.render("videos/edit", { video });
+});
+
 router.post("/videos", async (req, res, next) => {
     const { title, description, url } = req.body;
 
@@ -43,6 +49,35 @@ router.post("/videos", async (req, res, next) => {
         const video = await newVideo.save();
 
         res.status(201).render("videos/show", { video });
+    }
+});
+
+router.post("/videos/:id/edit", async (req, res, next) => {
+    const videoId = req.params.id;
+    const video = await Video.findById({ _id: videoId });
+    const { title, description, url } = req.body;
+
+    const updatedVideo = new Video({
+        title,
+        description,
+        url
+    });
+
+    updatedVideo.validateSync();
+
+    if (updatedVideo.errors) {
+        if (updatedVideo.errors.title) {
+            video.title = ""
+        }
+        if (updatedVideo.errors.url) {
+            video.url = ""
+        }
+        res.status(400).render("videos/edit", { updatedVideo, video });
+    } else {
+        await Video.findOneAndUpdate({ _id: videoId }, req.body, (error) => {
+            if (error) return res.send(error);
+            res.redirect(`/videos/${videoId}`);
+        });
     }
 });
 
