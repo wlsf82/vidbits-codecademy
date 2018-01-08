@@ -4,7 +4,7 @@ describe("User visits the create video page", () => {
     describe("User fill out a form and submit", () => {
         const title = "Sample video title";
         const description = "Sample video description";
-        const url = "http://example.com";
+        const url = "https://www.youtube.com/embed/vHTIYVHTSxA";
 
         beforeEach(() => {
             browser.url("/videos/create");
@@ -23,7 +23,7 @@ describe("User visits the create video page", () => {
 
     describe("User fill out a form with missing title and submit", () => {
         const description = "Sample video description";
-        const url = "http://example.com";
+        const url = "https://www.youtube.com/embed/vHTIYVHTSxA";
 
         beforeEach(() => {
             browser.url("/videos/create");

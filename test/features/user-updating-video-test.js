@@ -3,7 +3,7 @@ const { assert } = require("chai");
 describe("User visits the edit video page", () => {
     const title = "Foo";
     const description = "Foobaca";
-    const url = "http://example.com";
+    const url = "https://www.youtube.com/embed/vHTIYVHTSxA";
 
     beforeEach(() => {
         browser.url("/videos/create");

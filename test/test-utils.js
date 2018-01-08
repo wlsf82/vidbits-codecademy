@@ -15,7 +15,7 @@ const parseTextFromHTML = (htmlAsString, selector) => {
 const buildItemObject = (options = {}) => {
     const title = options.title || "My favorite video";
     const description = options.description || "The best video ever!";
-    const url = options.url || "http://example.com";
+    const url = options.url || "https://www.youtube.com/embed/vHTIYVHTSxA";
 
     return { title, description, url };
 };
